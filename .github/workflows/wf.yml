@@ -1,0 +1,15 @@
+name: Build and Push CI/CD
+
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  build-deploy:
+     runs-on: ubuntu-latest
+     steps:
+        - uses: actions/checkout@v3
+        - name: build  dev image
+          run: |
+            docker build -f ./devops/Dockerfile -t ${{GITHUB_REPOSITORY}}:${{ github.ref_name }}-${{ github.sha }} .
+            docker images
