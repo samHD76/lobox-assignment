@@ -13,5 +13,5 @@ jobs:
           run: |
             pwd
             ls
-            docker build -f ./devops/Dockerfile -t ${{ github.event.repository.name }}:${{ github.ref_name }}-${{ github.sha }} .
+            docker build -f devops/Dockerfile -t ${{ github.event.repository.name }}:${{ github.ref_name }}-${{ github.sha }} .
             docker images
