@@ -1,4 +1,4 @@
-FROM python:3.9
+FROM python:3.9.23-alpine3.22
 COPY . .
 RUN pip install -r devops/requirements.txt
 WORKDIR /app
