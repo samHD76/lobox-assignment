@@ -19,3 +19,14 @@ jobs:
           run: |
             docker build -f devops/Dockerfile -t samhdabd/lobox-assignment:${{ github.ref_name }}-${{ github.sha }} .
             docker push samhdabd/lobox-assignment:${{ github.ref_name }}-${{ github.sha }}
+
+#        - name: Deploy to {{ENVIRONEMNT}}
+#          uses: appleboy/ssh-action@v1
+#          with:
+#            host: ${{secrets.{{ENVIRONEMNT}}_SERVER_IP}}
+#            username: gitops
+#            key: "${{secrets.{{ENVIRONEMNT}}_SERVER_KEY}}"
+#            port: ${{ secrets.YOUR_SERVER_SSH_PORT || '22' }}
+#            script: |
+#                {get from company's secret manger }
+#                docker-compose up -d
