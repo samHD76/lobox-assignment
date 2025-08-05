@@ -8,10 +8,17 @@ jobs:
   build-deploy:
      runs-on: ubuntu-latest
      steps:
+        - name: Log in to Docker Hub
+          uses: docker/login-action@v3
+          with:
+            username: ${{ secrets.DOCKERHUB_USERNAME }}
+            password: ${{ secrets.DOCKERHUB_PAT }}
+
         - uses: actions/checkout@v3
         - name: build and push image
           run: |
             pwd
             ls
-            docker build -f devops/Dockerfile -t ${{ github.event.repository.name }}:${{ github.ref_name }}-${{ github.sha }} .
+            docker build -f devops/Dockerfile -t samhdabd/lobox-assignment:${{ github.ref_name }}-${{ github.sha }} .
             docker images
+            docker push samhdabd/lobox-assignment:${{ github.ref_name }}-${{ github.sha }}
