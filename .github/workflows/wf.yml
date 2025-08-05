@@ -5,7 +5,7 @@ on:
     branches:
       - '*'
 jobs:
-  build-deploy:
+  build-Push:
      runs-on: ubuntu-latest
      steps:
         - name: Log in to Docker Hub
@@ -17,8 +17,5 @@ jobs:
         - uses: actions/checkout@v3
         - name: build and push image
           run: |
-            pwd
-            ls
             docker build -f devops/Dockerfile -t samhdabd/lobox-assignment:${{ github.ref_name }}-${{ github.sha }} .
-            docker images
             docker push samhdabd/lobox-assignment:${{ github.ref_name }}-${{ github.sha }}
