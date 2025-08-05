@@ -1,0 +1,12 @@
+services:
+  redis:
+    image: redis:7.2.1-alpine3.18
+    container_name: redis-lobox
+    expose:
+      - 6379
+  lobox:
+    image: samhdabd/lobox-assignment:master-2778dc4297e8a69c60505c852dd921cc64912a89
+    container_name: lobox-service
+    restart: unless-stopped
+    ports:
+      - 8000:8000
